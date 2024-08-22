@@ -17,22 +17,19 @@ class ImagePaster:
 
         for coords in coordinates_list:
             if coords['class'] == 'data':
-                overlay = self.overlay_images[0]  # Первое изображение для 'data'
+                overlay = self.overlay_images[0]
             elif coords['class'] == 'id':
-                overlay = self.overlay_images[1]  # Второе изображение для 'id'
+                overlay = self.overlay_images[1]
             else:
-                continue  # Пропускаем если класс не 'data' и не 'id'
+                continue
 
-            # Получаем размеры для изменения
             width = int(coords['width'] * 0.97)
             height = int(coords['height'] * 0.9)
             overlay_resized = overlay.resize((width, height))
 
-            # Получаем координаты вставки
             x = int(coords['x'])
             y = int(coords['y'])
 
-            # Рассчитываем координаты вставки
             top_left_x = x - width // 2
             top_left_y = y - height // 2
 

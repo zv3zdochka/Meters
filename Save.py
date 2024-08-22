@@ -10,14 +10,11 @@ def create_folders_and_save_images(number, base, stick, data):
     os.makedirs(folder1, exist_ok=True)
     os.makedirs(folder2, exist_ok=True)
 
-    # Загружаем основное изображение с помощью Pillow
     main_image = base
 
-    # Сохраняем основное изображение в обеих папках
     main_image.save(os.path.join(folder1, f"{number}.jpg"))
     main_image.save(os.path.join(folder2, f"{number}.jpg"))
 
-    # Загружаем вторичные изображения
     secondary_image1 = stick
     secondary_image2 = data
 
@@ -26,6 +23,7 @@ def create_folders_and_save_images(number, base, stick, data):
     secondary_image2.save(os.path.join(folder2, f"{number}_data.jpg"))
 
     return os.path.join(folder1, f"{number}.jpg")
+
 # # Пример использования
 # number = input("Введите номер: ")
 # create_folders_and_save_images(number)

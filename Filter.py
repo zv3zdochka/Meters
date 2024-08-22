@@ -4,12 +4,10 @@ import json
 # Поддерживаемые форматы изображений
 SUPPORTED_IMAGE_EXTENSIONS = [".png", ".jpeg", ".jpg", ".bmp", ".gif"]
 
-# Функция для проверки условий
 def check_conditions(predictions):
     data_rects = []
     id_rects = []
 
-    # Сортируем предсказания по классам
     for prediction in predictions:
         if prediction['class'] == 'data':
             data_rects.append(prediction)
@@ -34,7 +32,6 @@ def check_conditions(predictions):
 
     return True
 
-# Функция для поиска изображения с любым расширением
 def find_image_with_any_extension(base_path):
     for ext in SUPPORTED_IMAGE_EXTENSIONS:
         image_path = f"{base_path}{ext}"
@@ -42,20 +39,15 @@ def find_image_with_any_extension(base_path):
             return image_path
     return None
 
-# Функция для удаления файлов, если они не проходят проверку
 def process_directory(root_dir):
-    # Проходим по всем директориям и файлам
     for dirpath, dirnames, filenames in os.walk(root_dir):
         for file in filenames:
-            # Ищем JSON файлы
             if file.endswith("_results.json"):
                 json_path = os.path.join(dirpath, file)
                 base_name = os.path.join(dirpath, file.replace("_results.json", ""))
 
-                # Ищем изображение с любым поддерживаемым расширением
                 image_path = find_image_with_any_extension(base_name)
 
-                # Если изображение найдено, проверяем и удаляем, если необходимо
                 if image_path:
                     with open(json_path, 'r') as json_file:
                         data = json.load(json_file)

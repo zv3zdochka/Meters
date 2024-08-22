@@ -15,10 +15,8 @@ class ImageExtractor:
         if not os.path.exists(self.json_path):
             raise FileNotFoundError(f"JSON not found at {self.json_path}")
 
-        # Открытие изображения
         image = Image.open(self.image_path)
 
-        # Чтение JSON файла
         with open(self.json_path, 'r') as f:
             data = json.load(f)
             predictions = data.get("predictions", [])
@@ -26,7 +24,6 @@ class ImageExtractor:
         if len(predictions) != 2:
             raise Exception(f"Some objects are not detected on the image.")
 
-        # Список для хранения обрезанных изображений
         cropped_images = []
 
         # Вырезка каждой области, описанной в predictions
@@ -42,21 +39,18 @@ class ImageExtractor:
             right = x + width / 2
             bottom = y + height / 2
 
-            # Вырезка области
             cropped_image = image.crop((left, top, right, bottom))
             cropped_images.append(cropped_image)
 
-            # Если нужно только два обрезанных изображения, прерываем цикл
-
         return image, cropped_images
-
-
-if __name__ == "__main__":
-    # Пример использования
-    image_path = r"path_to_your_image.jpeg"
-    json_path = r"path_to_your_json.json"
-
-    extractor = ImageExtractor(image_path, json_path)
-    original_image, cropped_images = extractor.extract_images()
-
-# Теперь вы можете работать с оригинальным изображением и двумя обрезанными изображениями, не сохраняя их на диск.
+#
+#
+# if __name__ == "__main__":
+#     # Пример использования
+#     image_path = r"path_to_your_image.jpeg"
+#     json_path = r"path_to_your_json.json"
+#
+#     extractor = ImageExtractor(image_path, json_path)
+#     original_image, cropped_images = extractor.extract_images()
+#
+# # Теперь вы можете работать с оригинальным изображением и двумя обрезанными изображениями, не сохраняя их на диск.

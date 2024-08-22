@@ -8,6 +8,7 @@ sheet = wb.active
 num = 0
 last_id = 0
 t = time.time()
+
 try:
     for row in sheet.iter_rows():
         num += 1

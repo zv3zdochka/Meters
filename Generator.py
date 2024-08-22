@@ -21,20 +21,15 @@ class ImageGenerator:
             k = 8
 
 
-        # Создаем фон с заданным цветом
         image = np.ones((self.height, self.width, 3), dtype=np.uint8) * np.array(white, dtype=np.uint8)
 
-        # Конвертируем изображение в формат PIL для добавления текста на кириллице
         image_pil = Image.fromarray(image)
         draw = ImageDraw.Draw(image_pil)
 
-        # Загружаем шрифт и рассчитываем размер текста
         font = ImageFont.truetype("arial.ttf", 32)
 
-        # Рисуем текст на изображении
         draw.text((100, 270), f"№" + text, font=font, fill=black)
         x0 = 100
-        # Конвертируем обратно в формат OpenCV
         image = np.array(image_pil)
         x0 += len(text) * 20
         # Генерация случайного штрих-кода (вертикальные линии)
@@ -62,7 +57,6 @@ class ImageGenerator:
         alpha = 0.9
         image = cv2.convertScaleAbs(image, alpha=alpha, beta=0)
 
-        # Обрезаем изображение
         crop_top_left = (70, 170)
         print(l)
         crop_bottom_right = (l, 320)
@@ -161,18 +155,16 @@ class ImageGenerator:
 
         return im
 
-
-if __name__ == "__main__":
-    generator = ImageGenerator(((36, 36, 36), (196, 196, 196), (71, 0, 0)), ((62, 62, 62), (234, 234, 234), (117, 0, 0)))
-
-    # Пример использования функции generate_image_with_text
-    text = "2018г. №0603580"
-
-    # result_image = generator.generate_image_with_text(text)
-    # result_image.show()
-    # Пример использования функции create_image_with_text
-
-    text = "12346"
-
-    red = generator.create_image_with_text(text)
-    red.show()
+#
+# if __name__ == "__main__":
+#     generator = ImageGenerator(((36, 36, 36), (196, 196, 196), (71, 0, 0)), ((62, 62, 62), (234, 234, 234), (117, 0, 0)))
+#
+#     text = "2018г. №0603580"
+#
+#     # result_image = generator.generate_image_with_text(text)
+#     # result_image.show()
+#
+#     text = "12346"
+#
+#     red = generator.create_image_with_text(text)
+#     red.show()

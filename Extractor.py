@@ -12,7 +12,6 @@ class ColorAnalyzer:
         self.image_array = np.array(self.image_rgb)
 
     def _get_most_common_color(self, color_range, color_index):
-        # Flatten the image array and filter by color index
         color_values = self.image_array[:, :, color_index].flatten()
         histogram = Counter(color_values)
         colors_in_range = [color for color in histogram if color_range[0] <= color <= color_range[1]]
@@ -46,16 +45,16 @@ class ColorAnalyzer:
         c = random.randrange(0, 150)
         return (0, 0, c)
 
-
-if __name__ == "__main__":
-    # Пример использования
-    image_path = r'C:\Users\batsi\PycharmProjects\Meters\data\60-31Ш\cropped\0_4.jpeg'  # Замените на путь к вашему изображению
-    analyzer = ColorAnalyzer(image_path)
-
-    black_color = analyzer.get_black_color()
-    white_color = analyzer.get_white_color()
-    red_color = analyzer.get_red_color()
-
-    print(f"Наиболее часто встречающийся черный цвет (RGB): {black_color}")
-    print(f"Наиболее часто встречающийся белый цвет (RGB): {white_color}")
-    print(f"Наиболее часто встречающийся красный цвет (RGB): {red_color}")
+#
+# if __name__ == "__main__":
+#     # Пример использования
+#     image_path = r'C:\Users\batsi\PycharmProjects\Meters\data\60-31Ш\cropped\0_4.jpeg'  # Замените на путь к вашему изображению
+#     analyzer = ColorAnalyzer(image_path)
+#
+#     black_color = analyzer.get_black_color()
+#     white_color = analyzer.get_white_color()
+#     red_color = analyzer.get_red_color()
+#
+#     print(f"Наиболее часто встречающийся черный цвет (RGB): {black_color}")
+#     print(f"Наиболее часто встречающийся белый цвет (RGB): {white_color}")
+#     print(f"Наиболее часто встречающийся красный цвет (RGB): {red_color}")
