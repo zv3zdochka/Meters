@@ -51,12 +51,12 @@ def process_directory(root_dir):
                 if image_path:
                     with open(json_path, 'r') as json_file:
                         data = json.load(json_file)
-                    print(check_conditions(data.get("predictions", [])))
+                    #print(check_conditions(data.get("predictions", [])))
                     # if not check_conditions(data.get("predictions", [])):
                     #     # Удаляем файлы, если не проходят проверку
                     #     os.remove(json_path)
                     #     os.remove(image_path)
                     #     print(f"Удалено: {json_path} и {image_path}")
 
-# Пример вызова функции
-process_directory(r"D:\winwin")
+# # Пример вызова функции
+# process_directory(r"D:\winwin")
