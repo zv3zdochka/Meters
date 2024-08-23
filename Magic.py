@@ -1,5 +1,5 @@
 import random
-
+from PIL import Image
 from Choser import CounterImageSelector
 from Cropper import ImageExtractor
 from Extractor import ColorAnalyzer
@@ -20,7 +20,7 @@ class Maker:
         self.number = number
         self.path, self.image, self.data_im, self.id_im = None, None, None, None
         self.image_id, self.data_image = None, None
-        self.output = None
+        self.output, self.base = None, None
         self.output_path = ''
 
     def job(self):
@@ -78,7 +78,7 @@ class Maker:
         return selector.choose_random_image()
 
     def save(self):
-        self.output_path = create_folders_and_save_images(self.number, self.output, self.data_image, self.id_image)
+        self.output_path = create_folders_and_save_images(self.number, self.output, self.data_image, self.id_image, Image.open(self.path))
 
     def get(self):
         self.job()
