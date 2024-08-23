@@ -178,3 +178,4 @@ cython_debug/
 /async_coords.py
 /coords.py
 /test/
+/output/
