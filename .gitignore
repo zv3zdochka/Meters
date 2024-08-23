@@ -174,3 +174,7 @@ cython_debug/
 /ваш_файл_измененный.xlsx
 /new.xlsx
 /data.xlsx
+/square.py
+/async_coords.py
+/coords.py
+/test/

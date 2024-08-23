@@ -22,6 +22,8 @@ class Maker:
         self.image_id, self.data_image = None, None
         self.output = None
         self.output_path = ''
+        self.process_name()
+
 
     def job(self):
         self.path = self.select_image(self.model)
@@ -39,6 +41,29 @@ class Maker:
     def rem_date(self):
         print(type(self.output))
         self.output = remove_date(self.output)
+
+    def process_name(self):
+        folder_names = [
+            "STAR 101",
+            "Star 102",
+            "ПУЛЬСАР 1Тш-1",
+            "ПУЛЬСАР 1ш-1-5",
+            "СКАТ 101",
+            "СКАТ 102",
+            "СКАТ 105",
+            "СКАТ 301",
+            "СОЭ-52",
+            "СОЭИ-5",
+            "СЭО-1.12.402",
+            "СЭО-1.14.302",
+            "ЦЭ6804"
+        ]
+        for i in folder_names:
+            if i in self.model:
+                self.model = i
+                break
+
+
 
     def place(self):
         self.output = ImagePaster(self.image, [self.data_image, self.id_image],
